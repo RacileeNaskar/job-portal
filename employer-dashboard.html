@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Employer Dashboard</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="candidate-dashboard.html">Candidate Dashboard</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="add-job">
+            <h2>Post a New Job</h2>
+            <form id="jobForm">
+                <label for="jobTitle">Job Title:</label>
+                <input type="text" id="jobTitle" required><br>
+
+                <label for="company">Company:</label>
+                <input type="text" id="company" required><br>
+
+                <label for="jobDescription">Job Description:</label>
+                <textarea id="jobDescription" required></textarea><br>
+
+                <label for="location">Location:</label>
+                <input type="text" id="location" required><br>
+
+                <label for="requirements">Requirements:</label>
+                <input type="text" id="requirements" required><br>
+
+                <button type="submit">Post Job</button>
+            </form>
+        </section>
+
+        <section id="manage-jobs">
+            <h2>Manage Job Listings</h2>
+            <ul id="jobList"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Job Recruitment Platform. All rights reserved.</p>
+    </footer>
+
+    <script src="employer.js"></script>
+</body>
+</html>
