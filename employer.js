@@ -28,7 +28,7 @@ function postJob(event) {
 // Function to display the job listings
 function displayJobListings() {
     const jobList = document.getElementById('jobList');
-    jobList.innerHTML = ''; // Clear previous job listings
+    jobList.innerHTML = ''; // Clear previous listings
 
     jobListings.forEach((job, index) => {
         const li = document.createElement('li');
@@ -36,43 +36,33 @@ function displayJobListings() {
         const pDescription = document.createElement('p');
         const pLocation = document.createElement('p');
         const pRequirements = document.createElement('p');
-        const deleteButton = document.createElement('button');
 
         h3.textContent = `${job.jobTitle} at ${job.company}`;
         pDescription.textContent = job.jobDescription;
         pLocation.textContent = `Location: ${job.location}`;
         pRequirements.textContent = `Requirements: ${job.requirements}`;
-        deleteButton.textContent = 'Delete';
 
-        // Add event listener to delete button
-        deleteButton.addEventListener('click', () => {
-            deleteJob(index);
+        // Add remove button
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove Job';
+        removeButton.addEventListener('click', () => {
+            jobListings.splice(index, 1);
+            localStorage.setItem('jobListings', JSON.stringify(jobListings));
+            displayJobListings();
         });
 
         li.appendChild(h3);
         li.appendChild(pDescription);
         li.appendChild(pLocation);
         li.appendChild(pRequirements);
-        li.appendChild(deleteButton);
+        li.appendChild(removeButton);
 
         jobList.appendChild(li);
     });
 }
 
-// Function to delete a job listing
-function deleteJob(index) {
-    // Remove the job from the array
-    jobListings.splice(index, 1);
-
-    // Update localStorage
-    localStorage.setItem('jobListings', JSON.stringify(jobListings));
-
-    // Update the displayed job listings
-    displayJobListings();
-}
-
-// Event listener for posting a job
+// Add event listener to the job form
 document.getElementById('jobForm').addEventListener('submit', postJob);
 
-// Display the job listings on page load
+// Initialize job listings on page load
 document.addEventListener('DOMContentLoaded', displayJobListings);

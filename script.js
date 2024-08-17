@@ -1,22 +1,6 @@
-// Sample job data (In a real project, this would come from a database)
-const jobListings = [
-    {
-        title: "Software Engineer",
-        company: "TechCorp",
-        description: "Develop and maintain web applications using React.js and Node.js.",
-        location: "New York, NY",
-        requirements: "2+ years of experience in web development.",
-    },
-    {
-        title: "Product Manager",
-        company: "InnovateX",
-        description: "Lead the development of new features and manage product lifecycles.",
-        location: "San Francisco, CA",
-        requirements: "3+ years of experience in product management.",
-    }
-];
+// Display job listings on home page
+const jobListings = JSON.parse(localStorage.getItem('jobListings')) || [];
 
-// Function to display job listings
 function displayJobListings() {
     const jobList = document.getElementById('job-list');
     jobList.innerHTML = ''; // Clear previous listings
@@ -28,8 +12,8 @@ function displayJobListings() {
         const pLocation = document.createElement('p');
         const pRequirements = document.createElement('p');
 
-        h3.textContent = `${job.title} at ${job.company}`;
-        pDescription.textContent = job.description;
+        h3.textContent = `${job.jobTitle} at ${job.company}`;
+        pDescription.textContent = job.jobDescription;
         pLocation.textContent = `Location: ${job.location}`;
         pRequirements.textContent = `Requirements: ${job.requirements}`;
 
