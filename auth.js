@@ -9,6 +9,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const profileImage = document.getElementById('profileImage').files[0];
+    const userType = document.getElementById('userType').value;
 
     if (users.some(user => user.email === email)) {
         alert('Email already registered');
@@ -21,7 +22,8 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
             name,
             email,
             password,
-            profileImage: reader.result // Store image as Data URL
+            profileImage: reader.result, // Store image as Data URL
+            isEmployer: userType === 'employer'
         };
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
